@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-// import Avatar from "../images/image.jpg"
 import { api } from "../utils/api"
 import Card from "./Card"
-
 
 
 function Main(props) {
@@ -11,9 +9,6 @@ function Main(props) {
   const[userAvatar, setuserAvatar] = useState("")
   const[cards, setCards] = useState([])
 
-// function handleDeliteCardClick(){
-//   setDeliteCardPopupOpen(true)
-// }
   useEffect(() => {
     api.getUserInfo()
       .then((data) => {
