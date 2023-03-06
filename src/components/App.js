@@ -4,7 +4,7 @@ import Header from "./header"
 import Main from "./Main"
 import Footer from "./Footer"
 import PopupWithForm from "./PopupWithForm"
-import PopupWithImage from "./PopupWithImage"
+import ImagePopup from "./ImagePopup"
 function App() {
 const [editProfilePopupOpen, isEditProfilePopupOpen] = React.useState(false);
 const [addCardPopupOpen, isAddCardPopupOpen] = React.useState(false);
@@ -83,12 +83,12 @@ function closeAllPopups() {
         <span className="popup__input-error" id="avatar-input-error"></span>
       </PopupWithForm>
       {/* попап изображения */}
-      <PopupWithImage
+      <ImagePopup
       card={selectedCard} 
       isOpen={imagePopupOpen} 
       onClose={closeAllPopups}
       >
-      </PopupWithImage>
+      </ImagePopup>
     </div>
     
   )
