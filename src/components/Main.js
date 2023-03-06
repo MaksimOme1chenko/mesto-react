@@ -4,26 +4,27 @@ import Card from "./Card"
 
 
 function Main(props) {
-  const[userName, setUserName] = useState("")
-  const[userDescription, setuserDescription] = useState("")
-  const[userAvatar, setuserAvatar] = useState("")
-  const[cards, setCards] = useState([])
+  const [userName, setUserName] = useState("")
+  const [userDescription, setUserDescription] = useState("")
+  const [userAvatar, setUserAvatar] = useState("")
+  const [cards, setCards] = useState([])
 
   useEffect(() => {
     api.getUserInfo()
       .then((data) => {
         setUserName(data.name);
-        setuserDescription(data.about);
-        setuserAvatar(data.avatar);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
       })
       .catch((err) => console.log(err))
   }, [])
-  useEffect(() =>{
+  useEffect(() => {
     api.getInitialCards()
-    .then((data) =>{
-      setCards(data)
-    })
-  })
+      .then((data) => {
+        setCards(data)
+      })
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <main className="content">
@@ -42,16 +43,11 @@ function Main(props) {
         <button className="profile__button-add" type="button" onClick={props.onAddPlace}></button>
       </section>
       <section className="elements">
-        {cards.map((card) => {
-          return (
-            <ul className="cards" key={card._id}>
-              <Card 
-              card={card}
-              onCardClick={props.onCardClick}
-              />
-            </ul>
-          )
-        })}
+        <ul className="cards">
+          {cards.map((card) => {
+            return <Card key={card._id} card={card} onCardClick={props.onCardClick} />;
+          })}
+        </ul>
       </section>
     </main>
   )
