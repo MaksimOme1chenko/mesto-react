@@ -17,14 +17,11 @@
       }).then(this._checkResponse)
     }
   
-    changeUserInfo({ name, profession }) {
+    changeUserInfo(newUserInfo) {
       return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        name: name, 
-        about: profession,
-      }),
+      body: JSON.stringify(newUserInfo),
       }).then(this._checkResponse)
     }
   
@@ -44,14 +41,11 @@
       }).then(this._checkResponse)
     }
   
-    uploadNewCard({ title, link }) {
+    uploadNewCard(newCard) {
       return fetch(`${this._url}/cards`, {
         method: "POST",
         headers: this._headers,
-        body: JSON.stringify({
-          name: title,
-          link: link,
-        })
+        body: JSON.stringify(newCard)
       }).then(this._checkResponse)
     }
     
@@ -62,16 +56,9 @@
       }).then(this._checkResponse)
     }
   
-    putLike(id) {
+    changeLikeCardStatus(id, isLiked) {
       return fetch(`${this._url}/cards/${id}/likes`, {
-        method: "PUT",
-        headers: this._headers,
-      }).then(this._checkResponse)
-    }
-  
-    deleteLike(id) {
-      return fetch(`${this._url}/cards/${id}/likes`, {
-        method: "DELETE",
+        method: isLiked ? 'PUT' : 'DELETE',
         headers: this._headers,
       }).then(this._checkResponse)
     }

@@ -1,51 +1,32 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { api } from "../utils/api"
 import Card from "./Card"
+import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
+function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onLikeClick, onDeliteClick}) {
 
-function Main(props) {
-  const [userName, setUserName] = useState("")
-  const [userDescription, setUserDescription] = useState("")
-  const [userAvatar, setUserAvatar] = useState("")
-  const [cards, setCards] = useState([])
-
-  useEffect(() => {
-    api.getUserInfo()
-      .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-      })
-      .catch((err) => console.log(err))
-  }, [])
-  useEffect(() => {
-    api.getInitialCards()
-      .then((data) => {
-        setCards(data)
-      })
-      .catch((err) => console.log(err))
-  }, [])
+const currentUser = React.useContext(CurrentUserContext)
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" alt="Аватарка" src={userAvatar} />
-          <button className="profile__avatar-button" type="button" onClick={props.onEditAvatar}></button>
+          <img className="profile__avatar" alt="Аватарка" src={currentUser.avatar} />
+          <button className="profile__avatar-button" type="button" onClick={onEditAvatar}></button>
         </div>
         <div className="profile__info">
           <div className="profile__edit">
-            <h1 className="profile__name">{userName}</h1>
-            <button className="profile__button-edit" type="button" onClick={props.onEditProfile}></button>
+            <h1 className="profile__name">{currentUser.name}</h1>
+            <button className="profile__button-edit" type="button" onClick={onEditProfile}></button>
           </div>
-          <p className="profile__profession">{userDescription}</p>
+          <p className="profile__profession">{currentUser.about}</p>
         </div>
-        <button className="profile__button-add" type="button" onClick={props.onAddPlace}></button>
+        <button className="profile__button-add" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="elements">
         <ul className="cards">
           {cards.map((card) => {
-            return <Card key={card._id} card={card} onCardClick={props.onCardClick} />;
+            return <Card key={card._id} card={card} onCardClick={onCardClick} onLikeClick={onLikeClick} onDeliteClick={onDeliteClick}/>;
           })}
         </ul>
       </section>
