@@ -3,8 +3,8 @@ import PopupWithForm from "./PopupWithForm"
 
 function AddPlacePopup({isOpen, onClose, onOverlayClose, onAddPlace}) {
 
-  const [cardName, setCardName] = React.useState()
-  const [cardLink, setCardLink] = React.useState()
+  const [cardName, setCardName] = React.useState('')
+  const [cardLink, setCardLink] = React.useState('')
   const [buttonText, setButtonText] = React.useState('Создать')
 
   React.useEffect(() => {
