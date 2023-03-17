@@ -9,7 +9,7 @@ import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
 import DelitePlacePopup from "./DelitePlacePopup"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
-import { api } from "../utils/api"
+import api from "../utils/api"
 
 function App() {
 const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
