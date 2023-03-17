@@ -9,7 +9,7 @@ import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
 import DelitePlacePopup from "./DelitePlacePopup"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
-import { api } from "../utils/api"
+import { api } from "../utils/Api"
 
 function App() {
 const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
@@ -81,7 +81,7 @@ function handleUpdateUser(newUserInfo, setButtonStatus){
 
 function handleUpdateAvatar(formData, setButtonStatus){
   setButtonStatus('Сохранение...')
-   api.changeUserAvatar(formData)
+  api.changeUserAvatar(formData)
    .then((data) => {
     setCurrentUser(data)
    })
